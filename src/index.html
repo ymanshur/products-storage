@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Storage Apps</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-dark bg-primary">
+        <span class="navbar-brand mb-0 h1">Product Storage Apps</span>
+    </nav>
+</header>
+<main class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Input Produk</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="inputProductSKU">Nomor Seri Produk</label>
+                        <input id="inputProductSKU" type="text" class="form-control" placeholder="Nomor Seri Produk">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputProductName">Nama Produk</label>
+                        <input id="inputProductName" type="text" class="form-control" placeholder="Nama Produk">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputProductPrice">Harga (Rp)</label>
+                        <input id="inputProductPrice" type="text" class="form-control" placeholder="Harga Produk">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputProductType">Tipe Produk</label>
+                        <select id="inputProductType" class="form-control">
+                          <option selected>Buku</option>
+                          <option>DVD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputProductSize">Ukuran <span>(MB)</span></label>
+                        <input id="inputProductSize" type="text" class="form-control" placeholder="Ukuran Produk">
+                    </div>
+                    <div class="form-group">
+                        <button id="buttonSave" class="btn btn-success">Save</button>
+                        <!-- <button id="buttonUpdateP" class="btn btn-primary">Update</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="listProduct" class="row"></div>
+</main>
+</body>
+</html>
