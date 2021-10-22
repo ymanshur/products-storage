@@ -71,6 +71,7 @@ function main() {
                             <h5>(${product.product_sku}) ${product.product_name}</h5>
                             <p>${product.product_type}</p>
                             <button type="button" class="btn btn-danger button-delete" id="${product.id}">Hapus</button>
+                            <button type="button" class="btn btn-primary button-edit" id="${product.id}">Ubah</button>
                         </div>
                     </div>
                 </div>
@@ -98,7 +99,7 @@ function main() {
         const inputProductType = document.querySelector("#inputProductType");
         const inputProductSize = document.querySelector("#inputProductSize");
         const buttonSave = document.querySelector("#buttonSave");
-        // const buttonUpdateP = document.querySelector("#buttonUpdateP");
+        // const buttonUpdate = document.querySelector("#buttonUpdate");
 
         buttonSave.addEventListener("click", function () {
             const product = {
@@ -112,7 +113,7 @@ function main() {
             insertProduct(product)
         });
 
-        // buttonUpdateP.addEventListener("click", function () {
+        // buttonUpdate.addEventListener("click", function () {
         //     const book = {
         //         id: Number.parseInt(inputBookId.value),
         //         title: inputBookTitle.value,
