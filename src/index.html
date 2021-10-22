@@ -16,33 +16,33 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Input Produk</h5>
+                    <h5 class="card-title">Input Product</h5>
                 </div>
                 <div class="card-body">
-                    <form id="formProduct" action="">
+                    <form id="formProduct">
                         <div class="form-group">
-                            <label for="inputProductSKU">Nomor Seri Produk</label>
+                            <label for="inputProductSKU">Stock Keeping Unit (SKU)</label>
                             <input id="inputProductSKU" type="text" class="form-control" placeholder="Nomor Seri Produk">
                         </div>
                         <div class="form-group">
-                            <label for="inputProductName">Nama Produk</label>
+                            <label for="inputProductName">Product Name</label>
                             <input id="inputProductName" type="text" class="form-control" placeholder="Nama Produk">
                         </div>
                         <div class="form-group">
-                            <label for="inputProductPrice">Harga (Rp)</label>
+                            <label for="inputProductPrice">Price ($)</label>
                             <input id="inputProductPrice" type="text" class="form-control" placeholder="Harga Produk">
                         </div>
                         <div class="form-group">
-                            <label for="inputProductType">Tipe Produk</label>
+                            <label for="inputProductType">Product Type</label>
                             <select id="inputProductType" class="form-control">
-                              <option value="Book" selected>Buku</option>
+                              <option value="Book" selected>Book</option>
                               <option value="DVD">DVD</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="inputProductSize">Ukuran <span>(MB)</span></label>
-                            <input id="inputProductSize" type="text" class="form-control" placeholder="Ukuran Produk">
-                        </div>
+                        <!-- <div class="form-group">
+                            <label for="inputProductSize">Ukuran</span></label>
+                            <input id="inputProductSize" type="text" class="form-control" placeholder="Dalam satuan MB/gram">
+                        </div> -->
                     </form>
                     <div class="form-group">
                         <button id="buttonSave" class="btn btn-success">Save</button>

@@ -74,8 +74,8 @@ function main() {
                         <div class="card-body">
                             <h5>(${product.product_sku}) ${product.product_name}</h5>
                             <p>${product.product_type}</p>
-                            <button type="button" class="btn btn-danger button-delete" id="${product.id}">Hapus</button>
-                            <button type="button" class="btn btn-primary button-edit" id="${product.id}">Ubah</button>
+                            <button type="button" class="btn btn-danger button-delete" id="${product.id}">Delete</button>
+                            <button type="button" class="btn btn-primary button-edit" id="${product.id}">Edit</button>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,8 @@ function main() {
         const inputProductName = document.querySelector("#inputProductName");
         const inputProductPrice = document.querySelector("#inputProductPrice");
         const inputProductType = document.querySelector("#inputProductType");
-        const inputProductSize = document.querySelector("#inputProductSize");
+        // const inputProductSize = document.querySelector("#inputProductSize");
+        const inputProductSize = 10;
         const buttonSave = document.querySelector("#buttonSave");
         // const buttonUpdate = document.querySelector("#buttonUpdate");
 
@@ -111,8 +112,8 @@ function main() {
                 product_name: inputProductName.value,
                 product_price: inputProductPrice.value,
                 product_type: inputProductType.value,
-                product_size: inputProductSize.value,
-                product_weight: inputProductSize.value
+                product_size: inputProductSize,
+                product_weight: inputProductSize
             };
             insertProduct(product)
         });
