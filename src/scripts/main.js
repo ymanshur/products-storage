@@ -1,5 +1,8 @@
 function main() {
     const baseUrl = "https://php-webapp.widyaanalytic.com/restapi/api";
+    const resetForm = () => {
+        document.getElementById("formProduct").reset();
+    }
     const getProduct = () => {
         fetch(`${baseUrl}`)
         .then(response => {
@@ -25,11 +28,12 @@ function main() {
             body: JSON.stringify(product)
         })
         .then(response => {
-            console.log(JSON.stringify(product))
+            // console.log(JSON.stringify(product))
             return response.json();
         })
         .then(responseJson => {
             showResponseMessage(responseJson.message);
+            resetForm();
             getProduct();
         })
         .catch(error => {
@@ -103,12 +107,12 @@ function main() {
 
         buttonSave.addEventListener("click", function () {
             const product = {
-                // id: Number.parseInt(inputBookId.value),
                 product_sku: inputProductSKU.value,
                 product_name: inputProductName.value,
                 product_price: inputProductPrice.value,
                 product_type: inputProductType.value,
                 product_size: inputProductSize.value,
+                product_weight: inputProductSize.value
             };
             insertProduct(product)
         });

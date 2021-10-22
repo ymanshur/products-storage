@@ -19,29 +19,31 @@
                     <h5 class="card-title">Input Produk</h5>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputProductSKU">Nomor Seri Produk</label>
-                        <input id="inputProductSKU" type="text" class="form-control" placeholder="Nomor Seri Produk">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputProductName">Nama Produk</label>
-                        <input id="inputProductName" type="text" class="form-control" placeholder="Nama Produk">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputProductPrice">Harga (Rp)</label>
-                        <input id="inputProductPrice" type="text" class="form-control" placeholder="Harga Produk">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputProductType">Tipe Produk</label>
-                        <select id="inputProductType" class="form-control">
-                          <option selected>Buku</option>
-                          <option>DVD</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputProductSize">Ukuran <span>(MB)</span></label>
-                        <input id="inputProductSize" type="text" class="form-control" placeholder="Ukuran Produk">
-                    </div>
+                    <form id="formProduct" action="">
+                        <div class="form-group">
+                            <label for="inputProductSKU">Nomor Seri Produk</label>
+                            <input id="inputProductSKU" type="text" class="form-control" placeholder="Nomor Seri Produk">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputProductName">Nama Produk</label>
+                            <input id="inputProductName" type="text" class="form-control" placeholder="Nama Produk">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputProductPrice">Harga (Rp)</label>
+                            <input id="inputProductPrice" type="text" class="form-control" placeholder="Harga Produk">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputProductType">Tipe Produk</label>
+                            <select id="inputProductType" class="form-control">
+                              <option value="Book" selected>Buku</option>
+                              <option value="DVD">DVD</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputProductSize">Ukuran <span>(MB)</span></label>
+                            <input id="inputProductSize" type="text" class="form-control" placeholder="Ukuran Produk">
+                        </div>
+                    </form>
                     <div class="form-group">
                         <button id="buttonSave" class="btn btn-success">Save</button>
                     </div>
