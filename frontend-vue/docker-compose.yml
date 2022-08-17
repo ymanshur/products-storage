@@ -1,0 +1,11 @@
+version: "3"
+services:
+  frontend:
+    build:      
+      context: .
+    env_file:
+      - .env
+    environment:
+      - BACKEND_URL=http://localhost:8000/
+    ports:
+      - "8081:8081"
