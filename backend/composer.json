@@ -1,0 +1,19 @@
+{
+  "name": "scandiweb/task",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Yusuf Zain Santosa",
+      "email": "yusufzainsantosa@gmail.com"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.4",
+    "firebase/php-jwt": "^6.3"
+  },
+	"autoload": {
+		"psr-4": {
+			"Src\\": "src/"
+		}
+	}
+}
