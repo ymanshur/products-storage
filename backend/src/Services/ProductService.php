@@ -1,8 +1,6 @@
 <?php
 namespace Src\Services;
 
-use Src\Models\{Product};
-
 class ProductService
 {
     private $db;
@@ -64,6 +62,7 @@ class ProductService
         $input['product_name'] = htmlspecialchars(strip_tags($input['product_name']));
         $input['product_price'] = htmlspecialchars(strip_tags($input['product_price']));
         $input['product_type'] = htmlspecialchars(strip_tags($input['product_type']));
+
         // Additional query and sanitize according to product_type
         $additional_query = '';
         switch ($input['product_type']) {
@@ -147,11 +146,6 @@ class ProductService
                 $params
             WHERE id = :id;
         ";
-
-        error_log(json_encode(array_merge(
-            array('id' => (int) $id),
-            $input
-        )));
 
         try {
             $statement = $this->db->prepare($query);
