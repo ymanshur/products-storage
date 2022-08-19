@@ -23,37 +23,37 @@ class ProductController
     public function processRequest()
     {
         switch ($this->requestMethod) {
-            case 'GET':
+            case "GET":
                 if ($this->productId) {
                     $response = $this->getProduct($this->productId);
                 } else {
                     $response = $this->getAllProducts();
                 };
                 break;
-            case 'POST':
+            case "POST":
                 $response = $this->createProductFromRequest();
                 break;
-            case 'PUT':
+            case "PUT":
                 $response = $this->updateProductFromRequest($this->productId);
                 break;
-            case 'DELETE':
+            case "DELETE":
                 $response = $this->deleteProduct($this->productId);
                 break;
             default:
                 $response = $this->notFoundResponse();
                 break;
         }
-        header($response['status_code_header']);
-        if ($response['body']) {
-            echo $response['body'];
+        header($response["status_code_header"]);
+        if ($response["body"]) {
+            echo $response["body"];
         }
     }
 
     private function getAllProducts()
     {
         $result = $this->productService->findAll();
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($result);
+        $response["status_code_header"] = "HTTP/1.1 200 OK";
+        $response["body"] = json_encode($result);
         return $response;
     }
 
@@ -63,20 +63,20 @@ class ProductController
         if (! $result) {
             return $this->notFoundResponse();
         }
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($result);
+        $response["status_code_header"] = "HTTP/1.1 200 OK";
+        $response["body"] = json_encode($result);
         return $response;
     }
 
     private function createProductFromRequest()
     {
-        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        $input = (array) json_decode(file_get_contents("php://input"), TRUE);
         if (! $this->validateProduct($input)) {
             return $this->unprocessableEntityResponse();
         }
         $this->productService->insert($input);
-        $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['body'] = null;
+        $response["status_code_header"] = "HTTP/1.1 201 Created";
+        $response["body"] = null;
         return $response;
     }
 
@@ -86,16 +86,16 @@ class ProductController
         if (! $result) {
             return $this->notFoundResponse();
         }
-        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        $input = (array) json_decode(file_get_contents("php://input"), TRUE);
         // if (! $this->validateProduct($input)) {
         //     return $this->unprocessableEntityResponse();
         // }
-        if (! $this->validateProductSKU($input['product_sku'])) {
+        if (! $this->validateProductSKU($input["product_sku"])) {
             return $this->unprocessableEntityResponse();
         }
         $this->productService->update($id, $input);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = null;
+        $response["status_code_header"] = "HTTP/1.1 200 OK";
+        $response["body"] = null;
         return $response;
     }
 
@@ -106,41 +106,41 @@ class ProductController
             return $this->notFoundResponse();
         }
         $this->productService->delete($id);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = null;
+        $response["status_code_header"] = "HTTP/1.1 200 OK";
+        $response["body"] = null;
         return $response;
     }
 
     private function validateProduct($input)
     {
-        if (! isset($input['product_sku'])) {
+        if (! isset($input["product_sku"])) {
             return false;
         }
-        if (! isset($input['product_name'])) {
+        if (! isset($input["product_name"])) {
             return false;
         }
-        if (! isset($input['product_price'])) {
+        if (! isset($input["product_price"])) {
             return false;
         }
-        if (! isset($input['product_type'])) {
+        if (! isset($input["product_type"])) {
             return false;
         }
-        if (! isset($input['product_type'])) {
+        if (! isset($input["product_type"])) {
             return false;
         }
         if (
-            ! isset($input['product_size']) &&
-            ! isset($input['product_weight']) &&
+            ! isset($input["product_size"]) &&
+            ! isset($input["product_weight"]) &&
             (
-                ! isset($input['product_height']) &&
-                ! isset($input['product_width']) &&
-                ! isset($input['product_length'])
+                ! isset($input["product_height"]) &&
+                ! isset($input["product_width"]) &&
+                ! isset($input["product_length"])
             )
         ) {
             return false;
         }
 
-        if (! $this->validateProductSKU($input['product_sku'])) {
+        if (! $this->validateProductSKU($input["product_sku"])) {
             return false;
         }
 
@@ -175,17 +175,17 @@ class ProductController
 
     private function unprocessableEntityResponse()
     {
-        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-        $response['body'] = json_encode([
-            'error' => 'Invalid input'
+        $response["status_code_header"] = "HTTP/1.1 422 Unprocessable Entity";
+        $response["body"] = json_encode([
+            "error" => "Invalid input"
         ]);
         return $response;
     }
 
     private function notFoundResponse()
     {
-        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
-        $response['body'] = null;
+        $response["status_code_header"] = "HTTP/1.1 404 Not Found";
+        $response["body"] = null;
         return $response;
     }
 }
