@@ -9,3 +9,8 @@ composer Install -vvv
 ```shell
 php -S localhost:8000 -t public
 ```
+
+## Seeding table data
+```shell
+php dbseed.php
+```
