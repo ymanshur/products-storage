@@ -63,18 +63,21 @@ class ProductService
         $additional_query = "";
         switch ($input["product_type"]) {
             case "dvd":
-                $additional_query = "product_size=:product_size";
                 $input["product_size"] = htmlspecialchars(strip_tags($input["product_size"]));
+
+                $additional_query = "product_size=:product_size";
                 break;
             case "book":
-                $additional_query = "product_weight=:product_weight";
                 $input["product_weight"] = htmlspecialchars(strip_tags($input["product_weight"]));
+
+                $additional_query = "product_weight=:product_weight";
                 break;
             case "furniture":
-                $additional_query = "product_height=:product_height, product_width=:product_width, product_length=:product_length";
                 $input["product_height"] = htmlspecialchars(strip_tags($input["product_height"]));
                 $input["product_width"] = htmlspecialchars(strip_tags($input["product_width"]));
                 $input["product_length"] = htmlspecialchars(strip_tags($input["product_length"]));
+                
+                $additional_query = "product_height=:product_height, product_width=:product_width, product_length=:product_length";
                 break;
             default:
                 # code...
