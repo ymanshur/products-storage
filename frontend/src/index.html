@@ -30,14 +30,36 @@
                         </div>
                         <div class="form-group">
                             <label for="inputProductPrice">Price ($)</label>
-                            <input id="inputProductPrice" type="number" class="form-control" placeholder="Product Price">
+                            <input id="inputProductPrice"type="number" step="0.01" class="form-control" placeholder="Product Price">
                         </div>
                         <div class="form-group">
                             <label for="inputProductType">Product Type</label>
                             <select id="inputProductType" class="form-control">
-                              <option value="Book" selected>Book</option>
-                              <option value="DVD">DVD</option>
+                                <option selected disabled hidden>Select Product Type</option>
+                                <option value="book">BOOK</option>
+                                <option value="dvd">DVD</option>
+                                <option value="furniture">FURNITURE</option>
                             </select>
+                        </div>
+                        <div id="productSize" class="form-group" hidden>
+                            <label for="inputProductSize">Size (MB)</label>
+                            <input id="inputProductSize" type="number" step="0.01" class="form-control" placeholder="Size in MB">
+                        </div>
+                        <div id="productWeight" class="form-group" hidden>
+                            <label for="inputProductWeight">Weight (kg)</label>
+                            <input id="inputProductWeight" type="number" step="0.01" class="form-control" placeholder="Weight in Kilogram">
+                        </div>
+                        <div id="productHeight" class="form-group" hidden>
+                            <label for="inputProductHeight">Height (cm)</label>
+                            <input id="inputProductHeight" type="number" step="0.01" class="form-control" placeholder="Height in Centimeter">
+                        </div>
+                        <div id="productWidth" class="form-group" hidden>
+                            <label for="inputProductWidth">Width (cm)</span></label>
+                            <input id="inputProductWidth" type="number" step="0.01" class="form-control" placeholder="Width in Centimeter">
+                        </div>
+                        <div id="productLength" class="form-group" hidden>
+                            <label for="inputProductLength">Length (cm)</span></label>
+                            <input id="inputProductLength" type="number" step="0.01" class="form-control" placeholder="Length in Centimeter">
                         </div>
                     </form>
                     <div class="form-group">
