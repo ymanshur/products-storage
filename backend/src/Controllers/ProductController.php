@@ -87,10 +87,10 @@ class ProductController
             return $this->notFoundResponse();
         }
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-        // if (! $this->validateProduct($input)) {
-        //     return $this->unprocessableEntityResponse();
-        // }
-        if (! $this->validateProductSKU($input["product_sku"])) {
+        /**
+         * If you implement PATCH replace validateProduct with validateProductSKU
+         */
+        if (! $this->validateProduct($input)) {
             return $this->unprocessableEntityResponse();
         }
         $this->productService->update($id, $input);
@@ -144,7 +144,8 @@ class ProductController
         return true;
     }
 
-    private function validateProductSKU(string $value) {        
+    private function validateProductSKU(string $value)
+    {        
         $query = "
             SELECT
                 *
