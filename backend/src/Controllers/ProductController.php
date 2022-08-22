@@ -125,9 +125,6 @@ class ProductController
         if (! isset($input["product_type"])) {
             return false;
         }
-        if (! isset($input["product_type"])) {
-            return false;
-        }
         if (
             ! isset($input["product_size"]) &&
             ! isset($input["product_weight"]) &&
