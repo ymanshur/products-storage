@@ -10,7 +10,7 @@ $statement = <<<EOS
         product_price FLOAT(7,2) NOT NULL,
         product_size FLOAT(7,2),
         product_weight FLOAT(7,2),
-        product_hight FLOAT(7,2),
+        product_height FLOAT(7,2),
         product_width FLOAT(7,2),
         product_length FLOAT(7,2),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -20,7 +20,7 @@ $statement = <<<EOS
     );
 
     INSERT INTO product
-        (id, product_sku, product_name, product_type, product_price, product_size, product_weight, product_hight, product_width, product_length)
+        (id, product_sku, product_name, product_type, product_price, product_size, product_weight, product_height, product_width, product_length)
     VALUES
         (1, 'disc-ai-2021', 'A.I. Artificial Intelligence', 'dvd', 20.22, 400, NULL, NULL, NULL, NULL),
         (2, 'disc-ta-2022', 'The Abyss', 'dvd', 23.05, 520, NULL, NULL, NULL, NULL),
