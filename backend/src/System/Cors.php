@@ -7,7 +7,9 @@ class Cors
 
   public function setCors()
   {
-    $this->client_http_origin = "http://localhost:8080";
+    $this->client_http_origin = $_ENV['CLIENT_HTTP_ORIGIN'];
+
+    error_log($this->client_http_origin);
   
     // Allow from any origin
     if (isset($this->client_http_origin)) {
