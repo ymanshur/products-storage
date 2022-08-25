@@ -83,29 +83,29 @@ export default function main() {
         const productLength = document.querySelector("#productLength")
 
         switch (productType) {
-            case 'book':
+            case "book":
                 productSize.hidden = true
                 productWeight.hidden = false
                 productHeight.hidden = true
                 productWidth.hidden = true
                 productLength.hidden = true
-                break;
-            case 'dvd':
+                break
+            case "dvd":
                 productSize.hidden = false
                 productWeight.hidden = true
                 productHeight.hidden = true
                 productWidth.hidden = true
                 productLength.hidden = true
-                break;
-            case 'furniture':
+                break
+            case "furniture":
                 productSize.hidden = true
                 productWeight.hidden = true
                 productHeight.hidden = false
                 productWidth.hidden = false
                 productLength.hidden = false
-                break;
+                break
             default:
-                break;
+                break
         }
     }
         
@@ -211,28 +211,28 @@ export default function main() {
                 product_type: inputProductType.value,
             }
             switch (inputProductType.value) {
-                case 'book':
+                case "book":
                     product.product_size = inputProductSize.value
                     product.product_weight = null
                     product.product_height = null
                     product.product_width = null
                     product.product_length = null
-                case 'dvd':
+                case "dvd":
                     product.product_size = null
                     product.product_weight = inputProductWeight.value
                     product.product_height = null
                     product.product_width = null
                     product.product_length = null
-                    break;
-                case 'furniture':
+                    break
+                case "furniture":
                     product.product_size = null
                     product.product_weight = null
                     product.product_height = inputProductHeight.value
                     product.product_width = inputProductWidth.value
                     product.product_length = inputProductLength.value
-                    break;
+                    break
                 default:
-                    break;
+                    break
             }
 
             insertProduct(product)
@@ -247,28 +247,28 @@ export default function main() {
                 product_type: inputProductType.value,
             }
             switch (inputProductType.value) {
-                case 'book':
+                case "book":
                     selectedProduct.product_size = inputProductSize.value
                     selectedProduct.product_weight = null
                     selectedProduct.product_height = null
                     selectedProduct.product_width = null
                     selectedProduct.product_length = null
-                case 'dvd':
+                case "dvd":
                     selectedProduct.product_size = null
                     selectedProduct.product_weight = inputProductWeight.value
                     selectedProduct.product_height = null
                     selectedProduct.product_width = null
                     selectedProduct.product_length = null
-                    break;
-                case 'furniture':
+                    break
+                case "furniture":
                     selectedProduct.product_size = null
                     selectedProduct.product_weight = null
                     selectedProduct.product_height = inputProductHeight.value
                     selectedProduct.product_width = inputProductWidth.value
                     selectedProduct.product_length = inputProductLength.value
-                    break;
+                    break
                 default:
-                    break;
+                    break
             }
 
             updateProduct(selectedProduct)
