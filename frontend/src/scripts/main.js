@@ -15,7 +15,7 @@ export default function main() {
             })
             .then(responseJson => {
                 allProducts = responseJson
-                renderAllProducts(responseJson)
+                renderAllProducts()
             })
     }
 
@@ -25,18 +25,35 @@ export default function main() {
             method: "POST",
             body: JSON.stringify(product)
         })
+            .then(response => {
+                if (! response.ok) {
+                    throw new Error("Invalid input") 
+                }
+            })
             .then(() => {
                 resetForm()
                 fetchProducts()
             })
+            .catch(error => {
+                alert(error.message)
+            })
+            
     }
 
     const removeProduct = (productId) => {
         fetch(`${baseURL}/${productId}`, {
             method: "DELETE",
         })
+            .then(response => {
+                if (! response.ok) {
+                    throw new Error("Product not found.") 
+                } 
+            })
             .then(() => {
                 fetchProducts()
+            })
+            .catch(error => {
+                alert(error.message)
             })
     }
 
@@ -45,9 +62,16 @@ export default function main() {
             method: "PUT",
             body: JSON.stringify(product)
         })
+            .then(response => {
+                if (! response.ok) {
+                    throw new Error("Invalid input") 
+                }
+            })
             .then(() => {
-                resetForm()
                 fetchProducts()
+            })
+            .catch(error => {
+                alert(error.message)
             })
     }
 
@@ -121,13 +145,13 @@ export default function main() {
     }
 
 
-    const renderAllProducts = (products) => {
+    const renderAllProducts = () => {
         const listProductElement = document.querySelector("#listProduct")
         listProductElement.innerHTML = ""
 
-        products.forEach(product => {
+        allProducts.forEach(product => {
             listProductElement.innerHTML += `
-                <div class="col-lg-4 col-md-6 col-sm-12" style="margin-top:12px">
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <h5>(${product.product_sku}) ${product.product_name}</h5>
