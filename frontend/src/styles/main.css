@@ -1,3 +1,7 @@
 .container {
-    padding: 16px;
+    padding: 50px;
+}
+
+.match-height > [class*='col'] > .card {
+    flex: 1 1 auto;
 }
