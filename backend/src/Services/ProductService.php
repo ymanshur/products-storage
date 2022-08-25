@@ -4,11 +4,12 @@ namespace Src\Services;
 class ProductService
 {
     private $db;
-    private $dbTable = "product";
+    private $dbTable;
 
     public function __construct($db)
     {
         $this->db = $db;
+        $this->dbTable = $_ENV["DB_TABLE"];
     }
 
     public function findAll()
@@ -54,6 +55,7 @@ class ProductService
     public function insert(array $input)
     {
         // Sanitize
+        $created_at = date("Y-m-d H:i:s");
         $input["product_sku"] = htmlspecialchars(strip_tags($input["product_sku"]));
         $input["product_name"] = htmlspecialchars(strip_tags($input["product_name"]));
         $input["product_price"] = htmlspecialchars(strip_tags($input["product_price"]));
@@ -95,11 +97,11 @@ class ProductService
             $statement = $this->db->prepare($query);
 
             // Bind values
+            $statement->bindParam(":created_at", $created_at);
             $statement->bindParam(":product_sku", $input["product_sku"]);
             $statement->bindParam(":product_name", $input["product_name"]);
             $statement->bindParam(":product_price", $input["product_price"]);
             $statement->bindParam(":product_type", $input["product_type"]);
-            $statement->bindParam(":created_at", date("Y-m-d H:i:s"));
             switch ($input["product_type"]) {
                 case "dvd":
                     $statement->bindParam(":product_size", $input["product_size"]);
@@ -135,15 +137,14 @@ class ProductService
             }
         }
 
-        if (count($input) >= 2) {
-            $params = substr($params, 0, -2);
-        }
+        $params = substr($params, 0, -2);
 
         $query = "
             UPDATE " . $this->dbTable . "
             SET 
                 $params
-            WHERE id = :id;
+            WHERE
+                id = :id;
         ";
 
         try {
