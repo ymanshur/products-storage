@@ -151,12 +151,14 @@ export default function main() {
 
         allProducts.forEach(product => {
             listProductElement.innerHTML += `
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card">
+                <div class="col-lg-4 col-md-6 col-sm-12" style="margin-top:16px">
+                    <div class="card h-100">
                         <div class="card-body">
                             <h5>(${product.product_sku}) ${product.product_name}</h5>
                             <p class="text-uppercase">${product.product_type}</p>
                             <p>$${product.product_price}</p>
+                        </div>
+                        <div class="card-footer">
                             <button type="button" class="btn btn-danger btn-delete" id="${product.id}">Delete</button>
                             <button type="button" class="btn btn-primary btn-edit" id="${product.id}">Edit</button>
                         </div>
