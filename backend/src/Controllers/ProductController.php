@@ -71,9 +71,17 @@ class ProductController
     private function createProductFromRequest()
     {
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
+        /**
+         * Handle if payload using form-data
+         */
+        if (! isset($input)) {
+            $input = $_POST;
+        }
+
         if (! $this->validateProduct($input)) {
             return $this->unprocessableEntityResponse();
         }
+
         $this->productService->insert($input);
         $response["status_code_header"] = "HTTP/1.1 201 Created";
         $response["body"] = null;
@@ -86,13 +94,16 @@ class ProductController
         if (! $result) {
             return $this->notFoundResponse();
         }
+
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
+
         /**
          * If you implement PATCH replace validateProduct with validateProductSKU
          */
-        if (! $this->validateProduct($input)) {
+        if (isset($input["product_sku"]) &&  ! $this->validateProductSKU($input['product_sku'], (int) $id)) {
             return $this->unprocessableEntityResponse();
         }
+
         $this->productService->update($id, $input);
         $response["status_code_header"] = "HTTP/1.1 200 OK";
         $response["body"] = null;
@@ -144,24 +155,42 @@ class ProductController
         return true;
     }
 
-    private function validateProductSKU(string $value)
-    {        
+    private function validateProductSKU(string $value, int $productId = null)
+    {
         $query = "
             SELECT
                 *
-            FROM (
+            FROM
+                " . $_ENV["DB_TABLE"] . "
+            WHERE
+                product_sku = :product_sku;
+        ";
+
+        /**
+         * Validation for UPDATE query
+         */
+        if ($productId) {
+            $query = "
                 SELECT
                     *
-                FROM
-                    product
+                FROM (
+                    SELECT
+                        *
+                    FROM
+                        " . $_ENV["DB_TABLE"] . "
+                    WHERE
+                        NOT id = :id
+                ) as a
                 WHERE
-                    NOT product_sku=:product_sku
-            ) as a
-            WHERE
-                product_sku=:product_sku;
-        ";
+                    product_sku = :product_sku;
+            ";
+        }     
+
         $statement = $this->db->prepare($query);
         $statement->bindParam(":product_sku", $value);
+        if ($productId) {
+            $statement->bindParam(":id", $productId);
+        }
         $statement->execute();
         
         if ($statement->fetchColumn()) {                
