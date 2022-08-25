@@ -4,11 +4,12 @@ namespace Src\Services;
 class ProductService
 {
     private $db;
-    private $dbTable = "product";
+    private $dbTable;
 
     public function __construct($db)
     {
         $this->db = $db;
+        $this->dbTable = $_ENV["DB_TABLE"];
     }
 
     public function findAll()
@@ -18,7 +19,7 @@ class ProductService
     {}
 
     public function insert(array $input)
-    {   }
+    {}
 
     public function update($id, array $input)
     {}

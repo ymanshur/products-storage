@@ -71,9 +71,17 @@ class ProductController
     private function createProductFromRequest()
     {
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
+        /**
+         * Handle if payload using form-data
+         */
+        if (! isset($input)) {
+            $input = $_POST;
+        }
+
         if (! $this->validateProduct($input)) {
             return $this->unprocessableEntityResponse();
         }
+
         $this->productService->insert($input);
         $response["status_code_header"] = "HTTP/1.1 201 Created";
         $response["body"] = null;
@@ -86,13 +94,13 @@ class ProductController
         if (! $result) {
             return $this->notFoundResponse();
         }
+
         $input = (array) json_decode(file_get_contents("php://input"), TRUE);
-        /**
-         * If you implement PATCH replace validateProduct with validateProductSKU
-         */
-        if (! $this->validateProduct($input)) {
+
+        if (isset($input["product_sku"]) &&  ! $this->validateProductSKU($input['product_sku'], (int) $id)) {
             return $this->unprocessableEntityResponse();
         }
+
         $this->productService->update($id, $input);
         $response["status_code_header"] = "HTTP/1.1 200 OK";
         $response["body"] = null;
@@ -114,7 +122,7 @@ class ProductController
     private function validateProduct($input)
     {}
 
-    private function validateProductSKU(string $value)
+    private function validateProductSKU(string $value, int $productId = null)
     {}
 
     private function unprocessableEntityResponse()
